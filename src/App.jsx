@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="nav-wrapper">
       <div className="container nav-container">
         <Link to="/" className="logo">
-          <img src="/logo.png" alt="AgriArchive" style={{ height: '40px', borderRadius: '8px' }} />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="AgriArchive Logo" style={{ height: '40px', borderRadius: '8px' }} />
           <span>AgriArchive</span>
         </Link>
         
@@ -47,7 +47,7 @@ const Footer = () => (
       <div className="footer-grid">
         <div className="footer-col" style={{ gridColumn: 'span 2' }}>
           <Link to="/" className="logo" style={{ marginBottom: '2.5rem' }}>
-            <img src="/logo.png" alt="AgriArchive" style={{ height: '40px', borderRadius: '8px', marginRight: '10px' }} />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="AgriArchive Logo" style={{ height: '40px', borderRadius: '8px', marginRight: '10px' }} />
             <span>AgriArchive</span>
           </Link>
           <p style={{ opacity: 0.6, fontSize: '1.1rem', maxWidth: '400px', lineHeight: '1.8' }}>
@@ -285,7 +285,7 @@ const CourseDetails = ({ name, id }) => (
 const DocumentViewer = () => {
   const { courseId, docType } = useParams();
   const [error, setError] = useState(false);
-  const docUrl = `/docs/${courseId}/${docType}.pdf`;
+  const docUrl = `${import.meta.env.BASE_URL}docs/${courseId}/${docType}.pdf`;
 
   return (
     <div className="section fade-in" style={{ padding: '2rem 0' }}>
