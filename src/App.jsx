@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
 import { Leaf, GraduationCap, Calculator, Send, Mail, MapPin, Phone, Menu, X, ChevronRight, FileText, BookOpen, UserCheck, Shield, Book, Plus, Trash2, ExternalLink, Sparkles, Cpu, Layers } from 'lucide-react';
 import './App.css';
 
