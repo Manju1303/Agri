@@ -1,16 +1,50 @@
-# React + Vite
+# 🌾 AgriArchive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AgriArchive** is a state-of-the-art educational repository for agricultural sciences. It provides high-fidelity course modules, academic tools, and research archives for modern learners, following the ICAR 5th Deans' Committee Syllabus.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Module Repository**: Comprehensive UG modules for Agriculture and Horticulture.
+- **Smart Metrics**: Advanced GPA calculation engine for semester performance tracking.
+- **Exam Predictor**: Intelligent question paper analysis and prediction system.
+- **Offline Ready**: Built as a Progressive Web App (PWA) for reliable access.
+- **Telegram Integration**: Real-time synchronization with the Agri Junction community.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React + Vite
+- **Styling**: Vanilla CSS with modern glassmorphism aesthetics
+- **Icons**: Lucide React
+- **Integration**: Express API & Telegram Bot support
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/components`: UI components (DocumentManager, GPA Calculator, etc.)
+- `src/styles`: Custom CSS design system
+- `src/server`: Optional Express API for document management
+- `scripts`: Utility scripts for document indexing
+- `public/docs`: Local repository for PDF course materials
+
+## 🏁 Getting Started
+
+### Installation
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run dev
+```
+
+### Build & Deploy
+```bash
+npm run build
+npm run deploy
+```
+
+## 🤝 Community
+Join over 15,000+ agricultural scholars on our [Telegram Channel](https://telegram.me/agrijunctioncrew).
+
+---
+© 2026 AgriArchive. Accelerated Digital Repository.

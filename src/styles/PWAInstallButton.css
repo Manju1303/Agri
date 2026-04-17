@@ -1,0 +1,156 @@
+/* PWA Install Banner */
+.pwa-install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2d5016 0%, #3a6b1f 100%);
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  animation: slideUp 0.3s ease-out;
+}
+
+.pwa-install-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pwa-install-icon {
+  flex-shrink: 0;
+  background: rgba(245, 166, 35, 0.2);
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5a623;
+}
+
+.pwa-install-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.pwa-install-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.pwa-install-subtitle {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pwa-install-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.pwa-btn-install,
+.pwa-btn-dismiss {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.pwa-btn-install {
+  background: #f5a623;
+  color: white;
+}
+
+.pwa-btn-install:hover {
+  background: #e09416;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+}
+
+.pwa-btn-dismiss {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.pwa-btn-dismiss:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .pwa-install-banner {
+    padding: 0.75rem;
+  }
+
+  .pwa-install-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pwa-install-icon {
+    margin-bottom: 0.5rem;
+  }
+
+  .pwa-install-text {
+    text-align: center;
+    min-width: unset;
+    width: 100%;
+  }
+
+  .pwa-install-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pwa-btn-install,
+  .pwa-btn-dismiss {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .pwa-install-banner {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .pwa-install-content {
+    gap: 0.75rem;
+  }
+
+  .pwa-install-title {
+    font-size: 1rem;
+  }
+
+  .pwa-install-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .pwa-btn-install,
+  .pwa-btn-dismiss {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

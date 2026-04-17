@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
-import { Leaf, GraduationCap, Calculator, Send, Mail, MapPin, Phone, Menu, X, ChevronRight, FileText, BookOpen, UserCheck, Shield, Book, Plus, Trash2, ExternalLink, Sparkles, Cpu, Layers } from 'lucide-react';
+import { Leaf, GraduationCap, Calculator, Send, Mail, MapPin, Phone, Menu, X, ChevronRight, FileText, BookOpen, UserCheck, Shield, Book, Plus, Trash2, ExternalLink, Sparkles, Cpu, Layers, Zap } from 'lucide-react';
 import './App.css';
+import QuestionPaperAnalyzer from './components/QuestionPaperAnalyzer';
+import './styles/QuestionAnalyzer.css';
+import PWAInstallButton from './components/PWAInstallButton';
+import './styles/PWAInstallButton.css';
+import NotificationCenter from './components/NotificationCenter';
+import './styles/NotificationCenter.css';
 
 // Components
 const Navbar = () => {
@@ -26,12 +32,15 @@ const Navbar = () => {
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <Link to="/">Dashboard</Link>
           <Link to="/study-materials">Resources</Link>
+          <Link to="/question-analyzer">Exam Predictor</Link>
           <Link to="/gpa-calculator">GPA Calc</Link>
           <Link to="/about-us">About</Link>
           <a href="https://telegram.me/agrijunctioncrew" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
             <Send size={18} /> Join Telegram
           </a>
         </div>
+
+        <NotificationCenter />
 
         <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle navigation">
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -454,6 +463,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/study-materials" element={<StudyMaterials />} />
+          <Route path="/question-analyzer" element={<QuestionPaperAnalyzer />} />
           <Route path="/gpa-calculator" element={<GPACalculator />} />
           <Route path="/UGM" element={<Agriculture />} />
           <Route path="/UGM/1S" element={<SemesterView s="1st" />} />
@@ -470,6 +480,7 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
+      <PWAInstallButton />
     </Router>
   );
 };

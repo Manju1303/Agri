@@ -10,9 +10,18 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "docs:init": "node scripts/downloadDocuments.js init",
+    "docs:stats": "node scripts/downloadDocuments.js stats",
+    "dev:server": "node src/server/api.js",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:server\"",
+    "api": "node src/server/api.js",
+    "api:watch": "nodemon src/server/api.js"
   },
   "dependencies": {
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "lucide-react": "^1.8.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
