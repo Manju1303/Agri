@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileText, Zap, BarChart3, Download, Loader, AlertCircle, TrendingUp, Target } from 'lucide-react';
-import { analyzeQuestionPapers, generatePredictedPaper, createPredictedPaperObject, exportPredictedPaper } from '../utils/questionAnalyzer';
+import { analyzeQuestionPapers, generatePredictedPaper, createPredictedPaperObject, exportPredictedPaper, generatePerfectQuestionPaper } from '../utils/questionAnalyzer';
 
 /**
  * QuestionPaperAnalyzer Component
@@ -273,7 +273,6 @@ const QuestionPaperAnalyzer = () => {
     if (!predictedPaper) return;
 
     // Use perfect question paper format
-    const { generatePerfectQuestionPaper } = require('../utils/questionAnalyzer');
     const paperContent = generatePerfectQuestionPaper(analysis, selectedSemester, 120);
     
     const element = document.createElement('a');

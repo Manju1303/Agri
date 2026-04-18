@@ -8,7 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { downloadAllDocuments, generateDocumentIndex } from '../utils/documentDownloader.js';
+import { downloadAllDocuments, generateDocumentIndex } from '../src/utils/documentDownloader.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,11 +19,11 @@ async function createDirectoryStructure() {
   console.log('Creating document directory structure...\n');
   
   try {
-    await downloadAllDocuments(path.join(__dirname, '../../public/documents'));
+    await downloadAllDocuments(path.join(__dirname, '../public/documents'));
     
     // Generate and save index
-    const index = generateDocumentIndex(path.join(__dirname, '../../public/documents'));
-    const indexPath = path.join(__dirname, '../../public/documents-index.json');
+    const index = generateDocumentIndex(path.join(__dirname, '../public/documents'));
+    const indexPath = path.join(__dirname, '../public/documents-index.json');
     
     fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
     console.log(`\n✅ Index saved to: ${indexPath}`);

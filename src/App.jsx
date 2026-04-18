@@ -213,8 +213,19 @@ const Agriculture = () => (
   </div>
 );
 
-const SemesterView = ({ s }) => {
-  const courses = [
+const COURSE_DATA = {
+  'AEX-101': { name: 'Fundamentals of Agri Extension' },
+  'AGR-101': { name: 'Fundamentals of Agronomy' },
+  'BIC-101': { name: 'Plant Biochemistry Analysis' },
+  'ENG-101': { name: 'Advanced Communication Skills' },
+  'HOR-111': { name: 'Horticulture Fundamentals' },
+  'MAT-111': { name: 'Elementary Calculus' },
+  'SAC-101': { name: 'Applied Soil Science' },
+  'TAM-101': { name: 'Agricultural Literature' },
+};
+
+const SEMESTER_COURSES = {
+  '1st': [
     { id: 'AEX-101', name: 'Fundamentals of Agri Extension' },
     { id: 'AGR-101', name: 'Fundamentals of Agronomy' },
     { id: 'BIC-101', name: 'Plant Biochemistry Analysis' },
@@ -223,7 +234,55 @@ const SemesterView = ({ s }) => {
     { id: 'MAT-111', name: 'Elementary Calculus' },
     { id: 'SAC-101', name: 'Applied Soil Science' },
     { id: 'TAM-101', name: 'Agricultural Literature' },
-  ];
+  ],
+  '2nd': [
+    { id: 'AGR-102', name: 'Introductory Agro-meteorology' },
+    { id: 'GPB-121', name: 'Fundamentals of Genetics' },
+    { id: 'SAC-121', name: 'Soil Chemistry' },
+    { id: 'ENG-121', name: 'Technical Writing' },
+    { id: 'AEX-121', name: 'Rural Sociology' },
+    { id: 'HOR-121', name: 'Production Tech of Fruit Crops' },
+  ],
+  '3rd': [
+    { id: 'AGR-201', name: 'Crop Production Technology - I' },
+    { id: 'GPB-201', name: 'Fundamentals of Plant Breeding' },
+    { id: 'ENT-201', name: 'Fundamentals of Entomology' },
+    { id: 'PAT-201', name: 'Fundamentals of Plant Pathology' },
+    { id: 'AEX-201', name: 'Communication Skills' },
+  ],
+  '4th': [
+    { id: 'AGR-202', name: 'Crop Production Technology - II' },
+    { id: 'SAC-222', name: 'Problematic Soils' },
+    { id: 'GPB-222', name: 'Commercial Plant Breeding' },
+    { id: 'ENT-221', name: 'Pests of Crops' },
+    { id: 'PAT-221', name: 'Diseases of Field Crops' },
+  ],
+  '5th': [
+    { id: 'AGR-301', name: 'Practical Crop Production - I' },
+    { id: 'ENT-301', name: 'Pests of Stored Grains' },
+    { id: 'PAT-301', name: 'Diseases of Horticultural Crops' },
+    { id: 'AEX-301', name: 'Entrepreneurship Development' },
+    { id: 'ECO-301', name: 'Agricultural Marketing' },
+  ],
+  '6th': [
+    { id: 'AGR-302', name: 'Practical Crop Production - II' },
+    { id: 'ENT-321', name: 'Management of Beneficial Insects' },
+    { id: 'PAT-321', name: 'Principles of Integrated Disease Mgmt' },
+    { id: 'AEX-321', name: 'Extension Methodologies' },
+    { id: 'ECO-321', name: 'Farm Management' },
+  ],
+  '7th': [
+    { id: 'RAWE-401', name: 'Rural Agricultural Work Experience' },
+    { id: 'AIA-401', name: 'Agro-Industrial Attachment' },
+  ],
+  '8th': [
+    { id: 'ELP-421', name: 'Experiential Learning Program - I' },
+    { id: 'ELP-422', name: 'Experiential Learning Program - II' },
+  ],
+};
+
+const SemesterView = ({ s }) => {
+  const courses = SEMESTER_COURSES[s] || [];
 
   return (
     <div className="section fade-in">
@@ -253,48 +312,59 @@ const SemesterView = ({ s }) => {
   );
 };
 
-const CourseDetails = ({ name, id }) => (
-  <div className="section fade-in">
-    <div className="container" style={{ maxWidth: '1100px' }}>
-      <Link to="/UGM/1S" className="btn-text mb-12">
-        <ChevronRight style={{ transform: 'rotate(180deg)' }} size={20} /> Back to Module Stack
-      </Link>
-      <div className="course-header" style={{ marginBottom: '5rem' }}>
-        <h1 className="mb-6" style={{ fontSize: '4.5rem', lineHeight: 1 }}>{id} - {name}</h1>
-        <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <span className="badge" style={{ background: 'var(--primary)', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: '900' }}>LOCAL REPOSITORY</span>
-          <span className="badge" style={{ background: '#334155', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: '900' }}>OFFLINE ACCESS</span>
+const CourseDetails = () => {
+  const { id } = useParams();
+  
+  // Find course name from SEMESTER_COURSES
+  let name = 'Unknown Course';
+  Object.values(SEMESTER_COURSES).forEach(semesterList => {
+    const found = semesterList.find(c => c.id === id);
+    if (found) name = found.name;
+  });
+
+  return (
+    <div className="section fade-in">
+      <div className="container" style={{ maxWidth: '1100px' }}>
+        <Link to={-1} className="btn-text mb-12">
+          <ChevronRight style={{ transform: 'rotate(180deg)' }} size={20} /> Back to Module Stack
+        </Link>
+        <div className="course-header" style={{ marginBottom: '5rem' }}>
+          <h1 className="mb-6" style={{ fontSize: '4.5rem', lineHeight: 1 }}>{id} - {name}</h1>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <span className="badge" style={{ background: 'var(--primary)', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: '900' }}>LOCAL REPOSITORY</span>
+            <span className="badge" style={{ background: '#334155', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: '900' }}>OFFLINE ACCESS</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          {[
+            { title: 'Data Bank', type: 'question-bank', icon: <FileText size={48} />, count: 'Local Archive', color: '#10b981' },
+            { title: 'Theory Core', type: 'theory', icon: <Book size={48} />, count: 'Full Text', color: '#3182ce' },
+            { title: 'Slide Stacks', type: 'slides', icon: <Send size={48} />, count: 'Visual Deck', color: '#e67e22' },
+            { title: 'Lab Protocols', type: 'manual', icon: <UserCheck size={48} />, count: 'Practical Guide', color: '#9f7aea' },
+          ].map((item, i) => (
+            <Link key={i} to={`/viewer/${id}/${item.type}`} className="card" style={{ display: 'flex', alignItems: 'center', gap: '3rem', padding: '3.5rem' }}>
+              <div style={{ background: `${item.color}15`, color: item.color, width: '110px', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '24px', border: `1px solid ${item.color}30` }}>
+                {item.icon}
+              </div>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ fontSize: '1.85rem', marginBottom: '0.5rem', color: 'white' }}>{item.title}</h3>
+                <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1rem', fontWeight: 'bold' }}>{item.count}</p>
+                <div className="btn btn-primary btn-sm" style={{ background: item.color, borderColor: item.color }}>
+                   <BookOpen size={20} /> Open Locally
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
-      <div className="grid grid-cols-2">
-        {[
-          { title: 'Data Bank', type: 'question-bank', icon: <FileText size={48} />, count: 'Local Archive', color: '#10b981' },
-          { title: 'Theory Core', type: 'theory', icon: <Book size={48} />, count: 'Full Text', color: '#3182ce' },
-          { title: 'Slide Stacks', type: 'slides', icon: <Send size={48} />, count: 'Visual Deck', color: '#e67e22' },
-          { title: 'Lab Protocols', type: 'manual', icon: <UserCheck size={48} />, count: 'Practical Guide', color: '#9f7aea' },
-        ].map((item, i) => (
-          <Link key={i} to={`/viewer/${id}/${item.type}`} className="card" style={{ display: 'flex', alignItems: 'center', gap: '3rem', padding: '3.5rem' }}>
-            <div style={{ background: `${item.color}15`, color: item.color, width: '110px', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '24px', border: `1px solid ${item.color}30` }}>
-              {item.icon}
-            </div>
-            <div style={{ flex: 1 }}>
-              <h3 style={{ fontSize: '1.85rem', marginBottom: '0.5rem', color: 'white' }}>{item.title}</h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1rem', fontWeight: 'bold' }}>{item.count}</p>
-              <div className="btn btn-primary btn-sm" style={{ background: item.color, borderColor: item.color }}>
-                 <BookOpen size={20} /> Open Locally
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const DocumentViewer = () => {
   const { courseId, docType } = useParams();
   const [error, setError] = useState(false);
-  const docUrl = `${import.meta.env.BASE_URL}docs/${courseId}/${docType}.pdf`;
+  const docUrl = `${import.meta.env.BASE_URL}documents/${courseId}/${docType}.pdf`;
 
   return (
     <div className="section fade-in" style={{ padding: '2rem 0' }}>
@@ -468,7 +538,13 @@ const App = () => {
           <Route path="/UGM" element={<Agriculture />} />
           <Route path="/UGM/1S" element={<SemesterView s="1st" />} />
           <Route path="/UGM/2S" element={<SemesterView s="2nd" />} />
-          <Route path="/UGM/course/:id" element={<CourseDetails name="Fundamentals of Agri Extension" id="AEX-101" />} />
+          <Route path="/UGM/3S" element={<SemesterView s="3rd" />} />
+          <Route path="/UGM/4S" element={<SemesterView s="4th" />} />
+          <Route path="/UGM/5S" element={<SemesterView s="5th" />} />
+          <Route path="/UGM/6S" element={<SemesterView s="6th" />} />
+          <Route path="/UGM/7S" element={<SemesterView s="7th" />} />
+          <Route path="/UGM/8S" element={<SemesterView s="8th" />} />
+          <Route path="/UGM/course/:id" element={<CourseDetails />} />
           <Route path="/viewer/:courseId/:docType" element={<DocumentViewer />} />
           
           <Route path="/about-us" element={<StaticPage title="About The Nexus" content="Agri Junction is a state-of-the-art educational repository for agricultural sciences. Our mission is to provide precision resources, modular study plans, and historical archives to a global collective of learners.\nIntegrated at the intersection of technology and agriculture, we deploy verified ICAR modules and automated performance metrics to ensure academic excellence across all semester levels." />} />
