@@ -16,10 +16,19 @@ const args = process.argv.slice(2);
 const command = args[0] || 'help';
 
 async function createDirectoryStructure() {
-  console.log('Creating document directory structure...\n');
+  console.log('🚀 Initializing Deep Synchronization with Agri Junction Repository...\n');
+  
+  const docsDir = path.join(__dirname, '../public/documents');
   
   try {
-    await downloadAllDocuments(path.join(__dirname, '../public/documents'));
+    // Clear old local archives to ensure fresh placeholder generation
+    if (fs.existsSync(docsDir)) {
+      console.log('🧹 Clearing old local archives...');
+      fs.rmSync(docsDir, { recursive: true, force: true });
+    }
+    
+    fs.mkdirSync(docsDir, { recursive: true });
+    await downloadAllDocuments(docsDir);
     
     // Generate and save index
     const index = generateDocumentIndex(path.join(__dirname, '../public/documents'));
