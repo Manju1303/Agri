@@ -9,7 +9,10 @@ import './styles/PWAInstallButton.css';
 import NotificationCenter from './components/NotificationCenter';
 import './styles/NotificationCenter.css';
 
-// Components
+import curriculumData from './data/curriculum.json';
+
+// --- Shared Components ---
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const location = useLocation();
@@ -90,7 +93,8 @@ const Footer = () => (
   </footer>
 );
 
-// Pages
+// --- Pages ---
+
 const Home = () => (
   <div className="fade-in">
     <section className="hero">
@@ -135,21 +139,6 @@ const Home = () => (
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Resource Stacks</h3>
             <p style={{ color: 'var(--text-muted)' }}>Thousands of question archives and lecture series available in high-performance digital formats.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="section">
-      <div className="container">
-        <div className="cta-card glass-dark" style={{ padding: '6rem 4rem', borderRadius: '40px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'relative', zIndex: 5 }}>
-            <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem', fontWeight: 900 }}>Join the Collective</h2>
-            <p style={{ fontSize: '1.4rem', marginBottom: '3.5rem', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 3.5rem' }}>Sync with over 15,000+ agricultural scholars in real-time. Instant updates, direct resource sharing, and global support.</p>
-            <a href="https://telegram.me/agrijunctioncrew" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: '1.25rem', padding: '1.2rem 3rem', borderRadius: '20px' }}>
-              <Send size={24} /> Initialize Telegram Sync
-            </a>
-          </div>
-          <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', background: 'radial-gradient(circle at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%)' }}></div>
         </div>
       </div>
     </section>
@@ -213,85 +202,49 @@ const Agriculture = () => (
   </div>
 );
 
-const COURSE_DATA = {
-  'AEX-101': { name: 'Fundamentals of Agri Extension' },
-  'AGR-101': { name: 'Fundamentals of Agronomy' },
-  'BIC-101': { name: 'Plant Biochemistry Analysis' },
-  'ENG-101': { name: 'Advanced Communication Skills' },
-  'HOR-111': { name: 'Horticulture Fundamentals' },
-  'MAT-111': { name: 'Elementary Calculus' },
-  'SAC-101': { name: 'Applied Soil Science' },
-  'TAM-101': { name: 'Agricultural Literature' },
-};
+const Horticulture = () => (
+  <div className="section fade-in">
+    <div className="container">
+      <Link to="/study-materials" className="btn-text mb-12">
+        <ChevronRight style={{ transform: 'rotate(180deg)' }} size={20} /> Back to Nexus Hub
+      </Link>
+      <h1 className="mb-4" style={{ fontSize: '3rem' }}>Horticulture (UG) Modules</h1>
+      <p className="mb-12" style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Index of semester modules for Horticultural Sciences.</p>
+      
+      <div className="semester-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map(s => (
+          <Link key={s} to={`/horticulture/${s}S`} className="card" style={{ padding: '2rem 3rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              <div style={{ background: '#10b981', color: 'white', width: '56px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '16px', fontWeight: '900', fontSize: '1.5rem' }}>{s}</div>
+              <h3 style={{ margin: 0, fontSize: '1.4rem' }}>Semester {s}</h3>
+            </div>
+            <div className="mt-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem', opacity: 0.6 }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 'bold' }}>ACCESS GRANTED</span>
+              <ChevronRight size={24} />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
-const SEMESTER_COURSES = {
-  '1st': [
-    { id: 'AEX-101', name: 'Fundamentals of Agri Extension' },
-    { id: 'AGR-101', name: 'Fundamentals of Agronomy' },
-    { id: 'BIC-101', name: 'Plant Biochemistry Analysis' },
-    { id: 'ENG-101', name: 'Advanced Communication Skills' },
-    { id: 'HOR-111', name: 'Horticulture Fundamentals' },
-    { id: 'MAT-111', name: 'Elementary Calculus' },
-    { id: 'SAC-101', name: 'Applied Soil Science' },
-    { id: 'TAM-101', name: 'Agricultural Literature' },
-  ],
-  '2nd': [
-    { id: 'AGR-102', name: 'Introductory Agro-meteorology' },
-    { id: 'GPB-121', name: 'Fundamentals of Genetics' },
-    { id: 'SAC-121', name: 'Soil Chemistry' },
-    { id: 'ENG-121', name: 'Technical Writing' },
-    { id: 'AEX-121', name: 'Rural Sociology' },
-    { id: 'HOR-121', name: 'Production Tech of Fruit Crops' },
-  ],
-  '3rd': [
-    { id: 'AGR-201', name: 'Crop Production Technology - I' },
-    { id: 'GPB-201', name: 'Fundamentals of Plant Breeding' },
-    { id: 'ENT-201', name: 'Fundamentals of Entomology' },
-    { id: 'PAT-201', name: 'Fundamentals of Plant Pathology' },
-    { id: 'AEX-201', name: 'Communication Skills' },
-  ],
-  '4th': [
-    { id: 'AGR-202', name: 'Crop Production Technology - II' },
-    { id: 'SAC-222', name: 'Problematic Soils' },
-    { id: 'GPB-222', name: 'Commercial Plant Breeding' },
-    { id: 'ENT-221', name: 'Pests of Crops' },
-    { id: 'PAT-221', name: 'Diseases of Field Crops' },
-  ],
-  '5th': [
-    { id: 'AGR-301', name: 'Practical Crop Production - I' },
-    { id: 'ENT-301', name: 'Pests of Stored Grains' },
-    { id: 'PAT-301', name: 'Diseases of Horticultural Crops' },
-    { id: 'AEX-301', name: 'Entrepreneurship Development' },
-    { id: 'ECO-301', name: 'Agricultural Marketing' },
-  ],
-  '6th': [
-    { id: 'AGR-302', name: 'Practical Crop Production - II' },
-    { id: 'ENT-321', name: 'Management of Beneficial Insects' },
-    { id: 'PAT-321', name: 'Principles of Integrated Disease Mgmt' },
-    { id: 'AEX-321', name: 'Extension Methodologies' },
-    { id: 'ECO-321', name: 'Farm Management' },
-  ],
-  '7th': [
-    { id: 'RAWE-401', name: 'Rural Agricultural Work Experience' },
-    { id: 'AIA-401', name: 'Agro-Industrial Attachment' },
-  ],
-  '8th': [
-    { id: 'ELP-421', name: 'Experiential Learning Program - I' },
-    { id: 'ELP-422', name: 'Experiential Learning Program - II' },
-  ],
-};
-
-const SemesterView = ({ s }) => {
-  const courses = SEMESTER_COURSES[s] || [];
+const SemesterView = ({ type = 'agriculture' }) => {
+  const { semesterId } = useParams();
+  const s = semesterId.replace('S', '');
+  const semesterKey = s === '1' ? '1st' : s === '2' ? '2nd' : s === '3' ? '3rd' : `${s}th`;
+  
+  const courses = curriculumData[type][semesterKey] || [];
+  const backPath = type === 'agriculture' ? '/UGM' : '/horticulture';
 
   return (
     <div className="section fade-in">
       <div className="container">
-        <Link to="/UGM" className="btn-text mb-12">
+        <Link to={backPath} className="btn-text mb-12">
           <ChevronRight style={{ transform: 'rotate(180deg)' }} size={20} /> Back to Semesters
         </Link>
         <div style={{ borderLeft: '6px solid var(--primary)', paddingLeft: '2rem', marginBottom: '5rem' }}>
-          <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>Semester {s} Stack</h1>
+          <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>Semester {s} {type === 'agriculture' ? 'Agriculture' : 'Horticulture'}</h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem' }}>Detailed course modules and digital archives for Semester {s}.</p>
         </div>
         <div className="grid grid-cols-2" style={{ display: 'grid', gap: '1.5rem' }}>
@@ -314,13 +267,28 @@ const SemesterView = ({ s }) => {
 
 const CourseDetails = () => {
   const { id } = useParams();
+  const [availability, setAvailability] = useState({});
   
-  // Find course name from SEMESTER_COURSES
   let name = 'Unknown Course';
-  Object.values(SEMESTER_COURSES).forEach(semesterList => {
-    const found = semesterList.find(c => c.id === id);
-    if (found) name = found.name;
+  Object.values(curriculumData).forEach(program => {
+    Object.values(program).forEach(semesterList => {
+      const found = semesterList.find(c => c.id === id);
+      if (found) name = found.name;
+    });
   });
+
+  React.useEffect(() => {
+    const docTypes = ['question-bank', 'theory', 'slides', 'manual'];
+    docTypes.forEach(async (type) => {
+      const url = `${import.meta.env.BASE_URL}documents/${id}/${type}.pdf`;
+      try {
+        const res = await fetch(url, { method: 'HEAD' });
+        setAvailability(prev => ({ ...prev, [type]: res.ok }));
+      } catch {
+        setAvailability(prev => ({ ...prev, [type]: false }));
+      }
+    });
+  }, [id]);
 
   return (
     <div className="section fade-in">
@@ -341,20 +309,39 @@ const CourseDetails = () => {
             { title: 'Theory Core', type: 'theory', icon: <Book size={48} />, count: 'Full Text', color: '#3182ce' },
             { title: 'Slide Stacks', type: 'slides', icon: <Send size={48} />, count: 'Visual Deck', color: '#e67e22' },
             { title: 'Lab Protocols', type: 'manual', icon: <UserCheck size={48} />, count: 'Practical Guide', color: '#9f7aea' },
-          ].map((item, i) => (
-            <Link key={i} to={`/viewer/${id}/${item.type}`} className="card" style={{ display: 'flex', alignItems: 'center', gap: '3rem', padding: '3.5rem' }}>
-              <div style={{ background: `${item.color}15`, color: item.color, width: '110px', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '24px', border: `1px solid ${item.color}30` }}>
-                {item.icon}
-              </div>
-              <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: '1.85rem', marginBottom: '0.5rem', color: 'white' }}>{item.title}</h3>
-                <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1rem', fontWeight: 'bold' }}>{item.count}</p>
-                <div className="btn btn-primary btn-sm" style={{ background: item.color, borderColor: item.color }}>
-                   <BookOpen size={20} /> Open Locally
+          ].map((item, i) => {
+            const isAvailable = availability[item.type];
+            return (
+              <Link 
+                key={i} 
+                to={`/viewer/${id}/${item.type}`} 
+                className={`card ${isAvailable === false ? 'unavailable' : ''}`}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '3rem', 
+                  padding: '3.5rem',
+                  opacity: isAvailable === false ? 0.6 : 1,
+                  filter: isAvailable === false ? 'grayscale(0.5)' : 'none'
+                }}
+              >
+                <div style={{ background: `${item.color}15`, color: item.color, width: '110px', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '24px', border: `1px solid ${item.color}30` }}>
+                  {item.icon}
                 </div>
-              </div>
-            </Link>
-          ))}
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1.85rem', margin: 0, color: 'white' }}>{item.title}</h3>
+                    {isAvailable === false && <span style={{ color: '#ef4444', fontSize: '0.75rem', fontWeight: '900', background: 'rgba(239, 68, 68, 0.1)', padding: '0.2rem 0.6rem', borderRadius: '10px' }}>OFFLINE</span>}
+                  </div>
+                  <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1rem', fontWeight: 'bold' }}>{item.count}</p>
+                  <div className="btn btn-primary btn-sm" style={{ background: isAvailable === false ? '#475569' : item.color, borderColor: isAvailable === false ? '#475569' : item.color }}>
+                     {isAvailable === false ? <X size={20} /> : <BookOpen size={20} />} 
+                     {isAvailable === false ? ' Unavailable' : ' Open Locally'}
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -364,7 +351,22 @@ const CourseDetails = () => {
 const DocumentViewer = () => {
   const { courseId, docType } = useParams();
   const [error, setError] = useState(false);
+  const [checking, setChecking] = useState(true);
   const docUrl = `${import.meta.env.BASE_URL}documents/${courseId}/${docType}.pdf`;
+
+  React.useEffect(() => {
+    const checkFile = async () => {
+      try {
+        const response = await fetch(docUrl, { method: 'HEAD' });
+        if (!response.ok) setError(true);
+      } catch {
+        setError(true);
+      } finally {
+        setChecking(false);
+      }
+    };
+    checkFile();
+  }, [docUrl]);
 
   return (
     <div className="section fade-in" style={{ padding: '2rem 0' }}>
@@ -374,9 +376,11 @@ const DocumentViewer = () => {
             <ChevronRight style={{ transform: 'rotate(180deg)' }} /> Back to Module
           </Link>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <a href={docUrl} download className="btn btn-primary btn-sm" style={{ padding: '0.5rem 1rem' }}>
-              <Plus style={{ transform: 'rotate(0deg)' }} /> Download PDF
-            </a>
+            {!error && !checking && (
+              <a href={docUrl} download className="btn btn-primary btn-sm" style={{ padding: '0.5rem 1rem' }}>
+                <Plus style={{ transform: 'rotate(0deg)' }} /> Download PDF
+              </a>
+            )}
             <div style={{ textAlign: 'right' }}>
               <h2 style={{ fontSize: '1.5rem', color: 'var(--primary)' }}>{courseId}</h2>
               <p style={{ textTransform: 'uppercase', fontSize: '0.8rem', opacity: 0.6 }}>{docType.replace('-', ' ')}</p>
@@ -384,28 +388,27 @@ const DocumentViewer = () => {
           </div>
         </div>
 
-        <div className="card" style={{ padding: 0, height: '85vh', overflow: 'hidden', background: '#000', position: 'relative' }}>
-          {error ? (
+        <div className="card" style={{ padding: 0, height: '85vh', overflow: 'hidden', background: '#000', position: 'relative', border: error ? '2px solid #ef4444' : '1px solid var(--border)' }}>
+          {checking ? (
+            <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="loader">Initializing Secure Access...</div>
+            </div>
+          ) : error ? (
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
               <Shield size={64} color="#ef4444" className="mb-4" />
-              <h3>Document Not Found Locally</h3>
-              <p style={{ color: 'var(--text-muted)', maxWidth: '400px', marginTop: '1rem' }}>
-                The file <code>{docUrl}</code> is missing from the local repository. 
-                Please ensure you have downloaded the documents to the <code>/public/docs</code> directory.
+              <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Access Denied: File Not Found</h3>
+              <p style={{ color: 'var(--text-muted)', maxWidth: '500px', fontSize: '1.1rem' }}>
+                The resource <code>{docUrl}</code> is currently unavailable in the local repository.
               </p>
-              <a href="https://telegram.me/agrijunctioncrew" target="_blank" rel="noopener noreferrer" className="btn btn-outline mt-8">
-                <Send size={18} /> Get from Telegram
-              </a>
+              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '3rem' }}>
+                <Link to={-1} className="btn btn-outline">Return to Module</Link>
+                <a href="https://telegram.me/agrijunctioncrew" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                  <Send size={18} /> Request via Telegram
+                </a>
+              </div>
             </div>
           ) : (
-            <iframe 
-              src={`${docUrl}#toolbar=0`} 
-              width="100%" 
-              height="100%" 
-              style={{ border: 'none' }}
-              onError={() => setError(true)}
-              title="Document Viewer"
-            ></iframe>
+            <iframe src={`${docUrl}#toolbar=0`} width="100%" height="100%" style={{ border: 'none' }} title="Document Viewer" />
           )}
         </div>
       </div>
@@ -417,97 +420,39 @@ const GPACalculator = () => {
   const [courses, setCourses] = useState([{ id: 1, credit: '', grade: '' }]);
   const [result, setResult] = useState(null);
 
-  const addCourse = () => {
-    setCourses([...courses, { id: Date.now(), credit: '', grade: '' }]);
-  };
-
-  const removeCourse = (id) => {
-    if (courses.length > 1) {
-      setCourses(courses.filter(c => c.id !== id));
-    }
-  };
-
-  const handleChange = (id, field, value) => {
-    setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
-  };
+  const addCourse = () => setCourses([...courses, { id: Date.now(), credit: '', grade: '' }]);
+  const removeCourse = (id) => courses.length > 1 && setCourses(courses.filter(c => c.id !== id));
+  const handleChange = (id, field, value) => setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
 
   const calculateGPA = () => {
-    let totalCredits = 0;
-    let weightedSum = 0;
+    let totalCredits = 0, weightedSum = 0;
     courses.forEach(c => {
-      const credit = parseFloat(c.credit);
-      const grade = parseFloat(c.grade);
-      if (!isNaN(credit) && !isNaN(grade)) {
-        totalCredits += credit;
-        weightedSum += (credit * grade);
-      }
+      const credit = parseFloat(c.credit), grade = parseFloat(c.grade);
+      if (!isNaN(credit) && !isNaN(grade)) { totalCredits += credit; weightedSum += (credit * grade); }
     });
-    if (totalCredits > 0) {
-      setResult((weightedSum / totalCredits).toFixed(3));
-    } else {
-      setResult(null);
-    }
+    setResult(totalCredits > 0 ? (weightedSum / totalCredits).toFixed(3) : null);
   };
 
   return (
     <div className="section fade-in">
       <div className="container" style={{ maxWidth: '900px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h1 className="mb-4" style={{ fontSize: '4.5rem', fontWeight: 900 }}>GPA Metric</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.35rem' }}>Advanced GPA computation engine for semester performance tracking.</p>
-        </div>
-        
-        <div className="card" style={{ padding: '4rem', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 60px', gap: '3rem', marginBottom: '3rem', paddingBottom: '1.5rem', borderBottom: '2px solid rgba(255,255,255,0.05)' }}>
-            <span style={{ fontWeight: '900', color: 'var(--text-muted)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px' }}>Input Credits</span>
-            <span style={{ fontWeight: '900', color: 'var(--text-muted)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px' }}>Metric Points (0-10)</span>
-            <span></span>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {courses.map((course) => (
-              <div key={course.id} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 60px', gap: '3rem', alignItems: 'center' }}>
-                <input 
-                  type="number" 
-                  step="0.5"
-                  placeholder="e.g. 3.0" 
-                  value={course.credit}
-                  onChange={(e) => handleChange(course.id, 'credit', e.target.value)}
-                />
-                <input 
-                  type="number" 
-                  step="0.1"
-                  placeholder="e.g. 8.5" 
-                  value={course.grade}
-                  onChange={(e) => handleChange(course.id, 'grade', e.target.value)}
-                />
-                <button 
-                  onClick={() => removeCourse(course.id)} 
-                  style={{ background: 'rgba(239, 68, 68, 0.1)', border: 'none', color: '#ef4444', width: '60px', height: '60px', borderRadius: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'var(--transition)' }}
-                >
-                  <Trash2 size={24} />
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ display: 'flex', gap: '2rem', marginTop: '5rem' }}>
-            <button onClick={addCourse} className="btn btn-outline" style={{ flex: 1, padding: '1.25rem' }}>
-              <Plus size={24} /> New Subject
-            </button>
-            <button onClick={calculateGPA} className="btn btn-primary" style={{ flex: 2, padding: '1.25rem', fontSize: '1.25rem' }}>
-              Initialize Calculation
-            </button>
-          </div>
-
-          {result && (
-            <div style={{ marginTop: '5rem', padding: '4.5rem', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', borderRadius: '32px', textAlign: 'center', color: 'white', boxShadow: '0 40px 100px -20px rgba(16, 185, 129, 0.4)' }}>
-              <p style={{ textTransform: 'uppercase', letterSpacing: '4px', fontWeight: '900', fontSize: '1rem', opacity: 0.8, marginBottom: '1.5rem' }}>Semester Performance Index</p>
-              <h2 style={{ fontSize: '7rem', color: 'white', lineHeight: 1, fontWeight: 900 }}>{result}</h2>
-              <div style={{ height: '4px', width: '80px', background: 'rgba(255,255,255,0.4)', margin: '2.5rem auto' }}></div>
-              <p style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>Target Met. Academic Synchronization Complete.</p>
+        <h1 className="mb-12 text-center" style={{ fontSize: '4rem', fontWeight: 900 }}>GPA Metric</h1>
+        <div className="card" style={{ padding: '4rem' }}>
+          {courses.map(course => (
+            <div key={course.id} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 60px', gap: '2rem', marginBottom: '1.5rem' }}>
+              <input type="number" placeholder="Credits" value={course.credit} onChange={e => handleChange(course.id, 'credit', e.target.value)} />
+              <input type="number" placeholder="Grade (0-10)" value={course.grade} onChange={e => handleChange(course.id, 'grade', e.target.value)} />
+              <button onClick={() => removeCourse(course.id)} className="btn btn-outline" style={{ color: '#ef4444' }}><Trash2 size={20} /></button>
             </div>
-          )}
+          ))}
+          <div style={{ display: 'flex', gap: '2rem', marginTop: '3rem' }}>
+            <button onClick={addCourse} className="btn btn-outline" style={{ flex: 1 }}>+ Subject</button>
+            <button onClick={calculateGPA} className="btn btn-primary" style={{ flex: 2 }}>Calculate Index</button>
+          </div>
+          {result && <div className="mt-12 p-8 text-center" style={{ background: 'var(--primary)', borderRadius: '24px', color: 'white' }}>
+            <p className="text-sm uppercase tracking-widest opacity-80">GPA Result</p>
+            <h2 style={{ fontSize: '5rem', margin: '1rem 0' }}>{result}</h2>
+          </div>}
         </div>
       </div>
     </div>
@@ -517,9 +462,9 @@ const GPACalculator = () => {
 const StaticPage = ({ title, content }) => (
   <div className="section fade-in">
     <div className="container" style={{ maxWidth: '900px' }}>
-      <h1 className="mb-12" style={{ fontSize: '4rem', fontWeight: 900 }}>{title}</h1>
-      <div className="card" style={{ padding: '4rem', fontSize: '1.25rem', lineHeight: '1.8', color: 'var(--text-muted)' }}>
-        {content.split('\n').map((line, i) => <p key={i} className="mb-6">{line}</p>)}
+      <h1 className="mb-8" style={{ fontSize: '3.5rem', fontWeight: 900 }}>{title}</h1>
+      <div className="card" style={{ padding: '3rem', fontSize: '1.2rem', lineHeight: '1.8' }}>
+        {content.split('\n').map((line, i) => <p key={i} className="mb-4">{line}</p>)}
       </div>
     </div>
   </div>
@@ -535,22 +480,20 @@ const App = () => {
           <Route path="/study-materials" element={<StudyMaterials />} />
           <Route path="/question-analyzer" element={<QuestionPaperAnalyzer />} />
           <Route path="/gpa-calculator" element={<GPACalculator />} />
+          
           <Route path="/UGM" element={<Agriculture />} />
-          <Route path="/UGM/1S" element={<SemesterView s="1st" />} />
-          <Route path="/UGM/2S" element={<SemesterView s="2nd" />} />
-          <Route path="/UGM/3S" element={<SemesterView s="3rd" />} />
-          <Route path="/UGM/4S" element={<SemesterView s="4th" />} />
-          <Route path="/UGM/5S" element={<SemesterView s="5th" />} />
-          <Route path="/UGM/6S" element={<SemesterView s="6th" />} />
-          <Route path="/UGM/7S" element={<SemesterView s="7th" />} />
-          <Route path="/UGM/8S" element={<SemesterView s="8th" />} />
+          <Route path="/UGM/:semesterId" element={<SemesterView type="agriculture" />} />
+          
+          <Route path="/horticulture" element={<Horticulture />} />
+          <Route path="/horticulture/:semesterId" element={<SemesterView type="horticulture" />} />
+
           <Route path="/UGM/course/:id" element={<CourseDetails />} />
           <Route path="/viewer/:courseId/:docType" element={<DocumentViewer />} />
           
-          <Route path="/about-us" element={<StaticPage title="About The Nexus" content="Agri Junction is a state-of-the-art educational repository for agricultural sciences. Our mission is to provide precision resources, modular study plans, and historical archives to a global collective of learners.\nIntegrated at the intersection of technology and agriculture, we deploy verified ICAR modules and automated performance metrics to ensure academic excellence across all semester levels." />} />
-          <Route path="/disclaimer" element={<StaticPage title="Legal Disclaimer" content="Information deployed via Agri Junction is provided with no warranties regarding precision or absolute accuracy for legislative purposes.\nResources are served for non-commercial pedagogical advancement, adhering to Section 107 of the Intellectual Property & Fair Use Guidelines." />} />
-          <Route path="/privacy-policy" element={<StaticPage title="Privacy Protocol" content="We deploy standard cryptographic anonymization for all network traffic. No user-specific heuristics are stored without explicit authorization.\nSession cookies are utilized exclusively for performance optimization and UI persistence." />} />
-          <Route path="/terms-and-conditions" element={<StaticPage title="Terms of Usage" content="Accessing the Agri Junction repository implies agreement with modular educational usage only.\nRedistribution for commercial extraction or unauthorized mirroring is strictly regulated under the Collective Learning Protocol." />} />
+          <Route path="/about-us" element={<StaticPage title="About The Nexus" content="Agri Junction is a state-of-the-art educational repository for agricultural sciences.\nOur mission is to provide precision resources, modular study plans, and historical archives to a global collective of learners." />} />
+          <Route path="/disclaimer" element={<StaticPage title="Legal Disclaimer" content="Information deployed via Agri Junction is provided with no warranties regarding precision or accuracy." />} />
+          <Route path="/privacy-policy" element={<StaticPage title="Privacy Protocol" content="We deploy standard cryptographic anonymization for all network traffic." />} />
+          <Route path="/terms-and-conditions" element={<StaticPage title="Terms of Usage" content="Accessing the Agri Junction repository implies agreement with modular educational usage only." />} />
           
           <Route path="*" element={<Home />} />
         </Routes>

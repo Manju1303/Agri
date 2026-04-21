@@ -150,36 +150,47 @@ const downloadAllDocuments = async (baseOutputDir = './public/documents') => {
       
       for (const [year, semesters] of Object.entries(years)) {
         for (const [semester, courses] of Object.entries(semesters)) {
-          const outputPath = path.join(baseOutputDir, program, year, semester);
-          
-          if (!fs.existsSync(outputPath)) {
-            fs.mkdirSync(outputPath, { recursive: true });
+          // Base path for this semester's courses
+          const semesterPath = path.join(baseOutputDir, program, year, semester);
+          if (!fs.existsSync(semesterPath)) {
+            fs.mkdirSync(semesterPath, { recursive: true });
           }
 
-          // If we have courses defined for this semester, ensure they have folders
           if (Array.isArray(courses)) {
             for (const courseId of courses) {
+              // Create a flat course directory for easy access
               const coursePath = path.join(baseOutputDir, courseId);
               if (!fs.existsSync(coursePath)) {
                 fs.mkdirSync(coursePath, { recursive: true });
               }
               
-              // Generate placeholder content if real files aren't available yet
-              const docTypes = ['theory', 'manual', 'slides', 'question-bank'];
-              for (const type of docTypes) {
-                const filePath = path.join(coursePath, `${type}.pdf`);
+              const docTypes = [
+                { id: 'theory', name: 'Theory Core' },
+                { id: 'manual', name: 'Lab Manual' },
+                { id: 'slides', name: 'Slide Decks' },
+                { id: 'question-bank', name: 'Question Bank' }
+              ];
+
+              for (const doc of docTypes) {
+                const filePath = path.join(coursePath, `${doc.id}.pdf`);
+                
+                // If it doesn't exist, generate a descriptive placeholder
                 if (!fs.existsSync(filePath)) {
-                  console.log(`📄 Generating High-Fidelity Placeholder: ${courseId}/${type}.pdf`);
+                  console.log(`📄 Generating High-Fidelity Placeholder: ${courseId}/${doc.id}.pdf`);
+                  
+                  // Create a slightly better PDF placeholder that identifies the document correctly
                   const content = `%PDF-1.4
 1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
 2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
 3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj
-4 0 obj << /Length 100 >> stream
-BT /F1 18 Tf 50 700 Td (AgriArchive Digital Repository) Tj
-/F1 12 Tf 0 -20 Td (Course: ${courseId}) Tj
-/F1 12 Tf 0 -20 Td (Module: ${type.toUpperCase()}) Tj
-/F1 12 Tf 0 -20 Td (Status: Verified ICAR 5th Deans Committee Syllabus) Tj
-/F1 10 Tf 0 -40 Td (Connecting to Cloud Sync...) Tj ET
+4 0 obj << /Length 200 >> stream
+BT /F1 24 Tf 50 720 Td (AGRI JUNCTION DIGITAL REPOSITORY) Tj
+/F1 14 Tf 0 -40 Td (Subject: ${courseId}) Tj
+/F1 14 Tf 0 -25 Td (Module: ${doc.name.toUpperCase()}) Tj
+/F1 14 Tf 0 -25 Td (Type: ${doc.id.toUpperCase()}) Tj
+/F1 12 Tf 0 -40 Td (Status: Academic Placeholder) Tj
+/F1 10 Tf 0 -20 Td (Synchronizing with cloud repository...) Tj
+/F1 10 Tf 0 -20 Td (Reference ID: ${Math.random().toString(36).substring(7)}) Tj ET
 endstream endobj
 xref 0 5 0000000000 65535 f 0000000009 00000 n 0000000058 00000 n 0000000115 00000 n 0000000202 00000 n trailer << /Size 5 /Root 1 0 R >> startxref 291 %%EOF`;
                   fs.writeFileSync(filePath, content);

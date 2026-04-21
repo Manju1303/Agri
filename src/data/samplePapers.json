@@ -1,0 +1,34 @@
+{
+  "Semester 1": [
+    {
+      "name": "Semester 1 - Year 1 (2022)",
+      "content": "Q1) Define Agronomy and its scope\nQ2) Explain soil formation processes\nQ3) What are the different types of soil?\nQ4) Discuss the role of microorganisms in soil\nQ5) Explain nitrogen cycle\nQ6) Define Agronomy and its importance in agriculture\nQ7) What are essential nutrients for plants?\nQ8) Explain soil formation processes and factors"
+    },
+    {
+      "name": "Semester 1 - Year 2 (2023)",
+      "content": "Q1) What is Agronomy? State its importance\nQ2) Explain soil formation with examples\nQ3) Describe different soil types\nQ4) Role of microorganisms in soil fertility\nQ5) Explain the nitrogen cycle in agriculture\nQ6) What are macro and micronutrients?\nQ7) Discuss soil composition\nQ8) Explain weathering and its types"
+    },
+    {
+      "name": "Semester 1 - Year 3 (2024)",
+      "content": "Q1) Define Agronomy\nQ2) Soil formation factors and processes\nQ3) Types of soil and their characteristics\nQ4) Importance of microorganisms\nQ5) Nitrogen cycle explanation\nQ6) Plant nutrient requirements\nQ7) Soil profile and horizons\nQ8) Parent material and soil formation"
+    }
+  ],
+  "Semester 2": [
+    {
+      "name": "Semester 2 - Year 1 (2022)",
+      "content": "Q1) Explain crop rotation benefits\nQ2) What is irrigation?\nQ3) Discuss different irrigation methods\nQ4) Water management in agriculture\nQ5) Types of irrigation systems\nQ6) Crop rotation and soil health"
+    }
+  ],
+  "Semester 3": [
+    {
+      "name": "Semester 3 - Year 1 (2022)",
+      "content": "Q1) Explain plant family classification\nQ2) What is plant breeding?\nQ3) Discuss hybridization techniques\nQ4) Plant genetics basics"
+    }
+  ],
+  "Semester 4": [
+    {
+      "name": "Semester 4 - Year 1 (2022)",
+      "content": "Q1) Explain pest management\nQ2) What are plant diseases?\nQ3) Discuss pest control methods\nQ4) Disease management strategies"
+    }
+  ]
+}

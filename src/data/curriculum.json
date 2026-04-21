@@ -1,0 +1,96 @@
+{
+  "agriculture": {
+    "1st": [
+      { "id": "AEX-101", "name": "Fundamentals of Agri Extension" },
+      { "id": "AGR-101", "name": "Fundamentals of Agronomy" },
+      { "id": "BIC-101", "name": "Plant Biochemistry Analysis" },
+      { "id": "ENG-101", "name": "Advanced Communication Skills" },
+      { "id": "HOR-111", "name": "Horticulture Fundamentals" },
+      { "id": "MAT-111", "name": "Elementary Calculus" },
+      { "id": "SAC-101", "name": "Applied Soil Science" },
+      { "id": "TAM-101", "name": "Agricultural Literature" }
+    ],
+    "2nd": [
+      { "id": "AGR-102", "name": "Introductory Agro-meteorology" },
+      { "id": "GPB-121", "name": "Fundamentals of Genetics" },
+      { "id": "SAC-121", "name": "Soil Chemistry" },
+      { "id": "ENG-121", "name": "Technical Writing" },
+      { "id": "AEX-121", "name": "Rural Sociology" },
+      { "id": "HOR-121", "name": "Production Tech of Fruit Crops" }
+    ],
+    "3rd": [
+      { "id": "AGR-201", "name": "Crop Production Technology - I" },
+      { "id": "GPB-201", "name": "Fundamentals of Plant Breeding" },
+      { "id": "ENT-201", "name": "Fundamentals of Entomology" },
+      { "id": "PAT-201", "name": "Fundamentals of Plant Pathology" },
+      { "id": "AEX-201", "name": "Communication Skills" }
+    ],
+    "4th": [
+      { "id": "AGR-202", "name": "Crop Production Technology - II" },
+      { "id": "SAC-222", "name": "Problematic Soils" },
+      { "id": "GPB-222", "name": "Commercial Plant Breeding" },
+      { "id": "ENT-221", "name": "Pests of Crops" },
+      { "id": "PAT-221", "name": "Diseases of Field Crops" }
+    ],
+    "5th": [
+      { "id": "AGR-301", "name": "Practical Crop Production - I" },
+      { "id": "ENT-301", "name": "Pests of Stored Grains" },
+      { "id": "PAT-301", "name": "Diseases of Horticultural Crops" },
+      { "id": "AEX-301", "name": "Entrepreneurship Development" },
+      { "id": "ECO-301", "name": "Agricultural Marketing" }
+    ],
+    "6th": [
+      { "id": "AGR-302", "name": "Practical Crop Production - II" },
+      { "id": "ENT-321", "name": "Management of Beneficial Insects" },
+      { "id": "PAT-321", "name": "Principles of Integrated Disease Mgmt" },
+      { "id": "AEX-321", "name": "Extension Methodologies" },
+      { "id": "ECO-321", "name": "Farm Management" }
+    ],
+    "7th": [
+      { "id": "RAWE-401", "name": "Rural Agricultural Work Experience" },
+      { "id": "AIA-401", "name": "Agro-Industrial Attachment" }
+    ],
+    "8th": [
+      { "id": "ELP-421", "name": "Experiential Learning Program - I" },
+      { "id": "ELP-422", "name": "Experiential Learning Program - II" }
+    ]
+  },
+  "horticulture": {
+    "1st": [
+      { "id": "FSC-101", "name": "Fundamentals of Horticulture" },
+      { "id": "VSC-101", "name": "Vegetable Science Principles" },
+      { "id": "FLA-101", "name": "Floriculture Basics" },
+      { "id": "PHT-101", "name": "Post Harvest Tech" }
+    ],
+    "2nd": [
+      { "id": "FSC-121", "name": "Fruit Crop Production" },
+      { "id": "VSC-121", "name": "Olericulture - I" },
+      { "id": "FLA-121", "name": "Landscape Gardening" },
+      { "id": "SAC-121", "name": "Soil Fertility" }
+    ],
+    "3rd": [
+      { "id": "ENT-201", "name": "Horticultural Entomology" },
+      { "id": "PAT-201", "name": "Horticultural Pathology" },
+      { "id": "HOR-201", "name": "Commercial Floriculture" }
+    ],
+    "4th": [
+      { "id": "ENT-221", "name": "Pest Management" },
+      { "id": "PAT-221", "name": "Disease Management" },
+      { "id": "HOR-221", "name": "Breeding of Horti Crops" }
+    ],
+    "5th": [
+      { "id": "FSC-301", "name": "Tropical Fruits" },
+      { "id": "VSC-301", "name": "Temperate Vegetables" }
+    ],
+    "6th": [
+      { "id": "FSC-321", "name": "Sub-tropical Fruits" },
+      { "id": "VSC-321", "name": "Potato Production" }
+    ],
+    "7th": [
+      { "id": "HRW-401", "name": "Horti-Work Experience" }
+    ],
+    "8th": [
+      { "id": "HELP-421", "name": "Horti-Experiential Learning" }
+    ]
+  }
+}
